@@ -71,12 +71,18 @@ chrome.webNavigation.onCommitted.addListener((details) => {
   }
 })
 
-chrome.runtime.onMessage.addListener(
-  function(request) {
-    if (request.message === "getAccessToken") {
-      chrome.storage.local.get('accessToken', function(result) {
-        console.log('Access token: ' + result.accessToken);
-      });
-    }
+chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+  if (request.message === "getAccessToken") {
+    chrome.storage.local.get('accessToken', function(result) {
+      sendResponse({accessToken: result.accessToken})
+    });
+
+    // Indicar que la respuesta se enviará de forma asincrónica
+    return true;
   }
-);
+})
+
+
+
+
+
