@@ -3,8 +3,6 @@
 let clientId = '9a3461370cad412298bebf3dec098ede'
 const clientSecret = "DCDxBw9SLFwVP8rmJL1Td4uAEQseSMLIPeUM01b6vXR/BLYxOq";
 const redirectUri = "https://ijkeilgfehinjmckjafpllcoonflgcfh.chromiumapp.org/"
-// const redirectUri = "http://www.infojobs.net/core/oauth2vc/index.xhtml"
-// const redirectUri = chrome.identity.getRedirectURL()
 const scope = "MY_APPLICATIONS,CANDIDATE_PROFILE_WITH_EMAIL,CANDIDATE_READ_CURRICULUM_SKILLS,CV";
 let authUrl = `https://www.infojobs.net/api/oauth/user-authorize/index.xhtml?client_id=${clientId}&response_type=code&redirect_uri=${encodeURIComponent(redirectUri)}&scope=${scope}`
 
@@ -31,7 +29,11 @@ function fetchToken(authCode) {
 
     // You may want to save it to the chrome local storage
     chrome.storage.local.set({accessToken: data.access_token}, function() {
-        console.log('Token is stored in local storage')
+        if (chrome.runtime.lastError) {
+            console.error('Error setting access token:', chrome.runtime.lastError)
+        } else {
+            console.log('Token is stored in local storage')
+        }
     });
   })
   .catch(err => console.log(err))
@@ -40,23 +42,30 @@ function fetchToken(authCode) {
 chrome.webNavigation.onCommitted.addListener((details) => {
   if (details.url.includes('infojobs.net')) {
     // Inicia el flujo de autenticación cada vez que visitas 'infojobs.net'
-    chrome.identity.launchWebAuthFlow({
-      'url': authUrl,
-      'interactive': true
-    }, function(redirectedTo) {
-      if (chrome.runtime.lastError) {
-        if (chrome.runtime.lastError.message !== 'The user did not approve access.') {
-          console.error(chrome.runtime.lastError.message)
-        }
+    chrome.storage.local.get('accessToken', function(result) {
+      if (!result.accessToken) {
+        // If no access token exists, initiate a new authentication flow
+        chrome.identity.launchWebAuthFlow({
+          'url': authUrl,
+          'interactive': true
+        }, function(redirectedTo) {
+          if (chrome.runtime.lastError) {
+            if (chrome.runtime.lastError.message !== 'The user did not approve access.') {
+              console.error(chrome.runtime.lastError.message)
+            }
+          } else {
+            let url = new URL(redirectedTo)
+            let params = new URLSearchParams(url.search)
+            let authCode = params.get('code')
+            if (authCode) {
+              fetchToken(authCode)
+            } else {
+              console.error('No authorization code found in the redirected URL.')
+            }
+          }
+        })
       } else {
-        let url = new URL(redirectedTo)
-        let params = new URLSearchParams(url.search)
-        let authCode = params.get('code')
-        if (authCode) {
-          fetchToken(authCode)
-        } else {
-          console.error('No authorization code found in the redirected URL.')
-        }
+        console.log('Access token already exists:', result.accessToken)
       }
     })
   }
