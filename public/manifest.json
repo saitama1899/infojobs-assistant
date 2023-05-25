@@ -7,19 +7,21 @@
   },
   "permissions": [
     "activeTab",
+    "storage",
     "scripting",
     "identity",
     "webNavigation"
   ],
   "host_permissions": [
-    "https://www.infojobs.net/*"
+    "https://www.infojobs.net/*",
+    "https://ifa-api-blush.vercel.app/*"
   ],
   "background": {
     "service_worker": "background.js"
   },
   "content_scripts": [
     {
-      "matches": ["http://*/*", "https://*/*"],
+      "matches": ["https://www.infojobs.net/*"],
       "js": ["contentScript.js"]
     }
   ]

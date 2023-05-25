@@ -3,7 +3,7 @@
 let clientId = '9a3461370cad412298bebf3dec098ede'
 const clientSecret = "DCDxBw9SLFwVP8rmJL1Td4uAEQseSMLIPeUM01b6vXR/BLYxOq";
 const redirectUri = "https://ijkeilgfehinjmckjafpllcoonflgcfh.chromiumapp.org/"
-const scope = "MY_APPLICATIONS,CANDIDATE_PROFILE_WITH_EMAIL,CANDIDATE_READ_CURRICULUM_SKILLS,CV";
+const scope = "MY_APPLICATIONS,CANDIDATE_PROFILE_WITH_EMAIL,CANDIDATE_READ_CURRICULUM_SKILLS,CANDIDATE_READ_CURRICULUM_CVTEXT,CANDIDATE_READ_CURRICULUM_EDUCATION,CANDIDATE_READ_CURRICULUM_EXPERIENCE,CANDIDATE_READ_CURRICULUM_FUTURE_JOB,CV";
 let authUrl = `https://www.infojobs.net/api/oauth/user-authorize/index.xhtml?client_id=${clientId}&response_type=code&redirect_uri=${encodeURIComponent(redirectUri)}&scope=${scope}`
 let isAuthenticating = false;
 
@@ -107,7 +107,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
   }
 
   if (request.message === "fetchApiData") {
-    fetch("https://ifa-api-phi.vercel.app/api/infojobs", {
+    fetch("https://ifa-api-blush.vercel.app/api/infojobs", {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
