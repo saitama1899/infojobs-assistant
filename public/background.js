@@ -25,12 +25,10 @@ function fetchToken(authCode) {
         return
     }
 
-    // Calculate the expiration time
     const now = new Date().getTime()
-    const expiresInMilliseconds = (data.expires_in || 3600) * 1000  // if expires_in is not present, defaulting to 1 hour
+    const expiresInMilliseconds = (data.expires_in || 3600) * 1000 
     const expirationTime = now + expiresInMilliseconds
 
-    // Save the access token and the expiration time
     chrome.storage.local.set({accessToken: data.access_token, expirationTime}, function() {
         if (chrome.runtime.lastError) {
           console.error('Error setting access token:', chrome.runtime.lastError)
@@ -44,7 +42,6 @@ function fetchToken(authCode) {
 
 function initiateAuthenticationFlow() {
   if (isAuthenticating) {
-    // Ya está en curso la autenticación
     return
   }
 
@@ -54,7 +51,7 @@ function initiateAuthenticationFlow() {
     'url': authUrl,
     'interactive': true
   }, function(redirectedTo) {
-    isAuthenticating = false // resetear la bandera cuando la autenticación ha terminado
+    isAuthenticating = false
 
     if (chrome.runtime.lastError) {
       if (chrome.runtime.lastError.message !== 'The user did not approve access.') {
@@ -75,12 +72,10 @@ function initiateAuthenticationFlow() {
 
 chrome.webNavigation.onCommitted.addListener((details) => {
   if (details.url.includes('infojobs.net') && details.url !== authUrl) {
-    // Inicia el flujo de autenticación cada vez que visitas 'infojobs.net'
     chrome.storage.local.get(['accessToken', 'expirationTime'], function(result) {
       const now = new Date().getTime()
 
       if (!result.accessToken || now >= result.expirationTime) {
-        // If no access token exists or if the token has expired, initiate a new authentication flow
         initiateAuthenticationFlow()
       } else {
         console.log('Access token already exists:', result.accessToken)
@@ -95,14 +90,18 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     chrome.storage.local.get(['accessToken', 'expirationTime'], function(result) {
       const now = new Date().getTime()
       if (!result.accessToken || now >= result.expirationTime) {
-        // Si no existe un token de acceso o si el token ha expirado, envía una respuesta indicando que el token no es válido
         sendResponse({status: 'invalid_token'})
       } else {
         sendResponse({accessToken: result.accessToken})
       }
     })
+    return true
+  }
 
-    // Indicar que la respuesta se enviará de forma asincrónica
+  if (request.message === "getAnalytics") {
+    chrome.storage.local.get(['analytics'], function(result) {
+      sendResponse({analytics: result.analytics})
+    })
     return true
   }
 
@@ -119,8 +118,17 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     })
     .then(response => response.json())
     .then(data => {
-        // Haz algo con los datos recibidos
-        console.log(data)
+      if (!data.response) {
+        console.log('Failed to obtain analytics')
+        return
+      }
+      chrome.storage.local.set({analytics: data.response}, function() {
+        if (chrome.runtime.lastError) {
+          console.error('Error setting analytics:', chrome.runtime.lastError)
+        } else {
+          console.log('Analytics data is stored in local storage', data.response)
+        }
+      })
     })
     .catch((error) => {
         console.error('Error:', error)
