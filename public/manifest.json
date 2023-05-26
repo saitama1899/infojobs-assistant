@@ -24,5 +24,11 @@
       "matches": ["https://www.infojobs.net/*"],
       "js": ["contentScript.js"]
     }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["logo.png"],
+      "matches": ["https://www.infojobs.net/*"]
+    }
   ]
 }
