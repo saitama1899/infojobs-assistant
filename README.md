@@ -24,6 +24,7 @@ Este es un proyecto de 1 semana para participar en la hackaton de Infojobs y Mid
 ![2](https://github.com/saitama1899/infojobs-assistant/assets/16955362/c6f8c4da-4626-4728-b0c1-b9777dde9783)
 
 #### Pantalla de carga
+![3](https://github.com/saitama1899/infojobs-assistant/assets/16955362/eab36a55-0619-4189-8e71-6dec8bcbc5c6)
 
 #### Análisis del perfil completado
 ![4](https://github.com/saitama1899/infojobs-assistant/assets/16955362/c0f69643-77ea-4c63-8e95-c28072142f52)
