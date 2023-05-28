@@ -45,18 +45,6 @@ Este endpoint se encarga de realizar el analisis del perfil y la oferta de emple
 Devolverá un array de 5 objetos, con las respuestas para cada uno de los 5 puntos. Los dos ultimos puntos cuentan con un campo extra 'percentage'.
 
 
-
-## 🗝 API Built with
-- [Express](https://expressjs.com/es/) For make the API.
-- [Co:here AI](https://cohere.ai/) For get summary data given a raw Twitter account timeline.
-- [Twitter API](https://developer.twitter.com/en/docs/twitter-api) For get the user id, avatar, and the timeline given a username.
-
-## 💻 APP Built with
-- [Vite](https://vitejs.dev/) For build the project.
-- [ReactJs](https://es.reactjs.org/) For User UI.
-- [Framer Motion](https://www.framer.com/motion/) For frontend animations.
-- [Tailwind](https://tailwindcss.com) For frontend styles.
-
 ## 📑 Notas del desarrollo
 - Este proyecto esta pensado como MVP, es una versión del código rápida y funcional para poner a prueba la idea.
 
