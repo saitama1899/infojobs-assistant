@@ -1,7 +1,7 @@
 ![logo](https://res.cloudinary.com/dykoj2iuj/image/upload/v1685080130/logo_xcc4nz.png)
 # Infojobs Assistant
 
-Infojobs Assistant es una extensión para Google Chrome con la que el usuario podrá obtener un análisis en profundidad de su curriculum y perfil en relación a la oferta de empleo a la que quiera aplicar. La finalidad de la extensión es la de facilitar el proceso de selección al candidato para que se sienta mas seguro al aplicar y aumente sus posibilidades de conseguir el empleo.
+Infojobs Assistant es una extensión para Google Chrome con la que el usuario podrá obtener un análisis en profundidad de su curriculum en relación a la oferta de empleo a la que quiere aplicar. La finalidad de la extensión es la de facilitar el proceso de selección al candidato para que se sienta mas seguro y aumentar sus posibilidades de conseguir el empleo.
 Este análisis cuenta con 5 partes principales que el candidato podrá diferenciar fácilmente:
 1- Fallos en el curriculum, faltas de ortografia, contenido que se eche en falta... etc.
 2- Cambios para adaptarlo mejor a la oferta en cuestión.
@@ -70,8 +70,9 @@ Devolverá un array de 5 objetos, con las respuestas para cada uno de los 5 punt
 - Que la página se actualice al loguear con OAUTH.
 - Que el analisis no solo se renderice al terminar la petición si el tab esta activo.
 - Solucionar error 429 que sucede de forma puntual por exceso de peticiones.
-- Trabajar en la velocidad de respuesta de chat completion de Open Ai.
+- Trabajar en la velocidad de respuesta de chat completion de Open Ai (actualmente es muy larga, de 1 minuto)
 - Mejorar el prompt para obtener un analisis mas efectivo.
 
 ## TODO conceptual
+- Profundizar aún más en el analisis.
 - Añadir a la extension algún cuadro mas de informacion adicional tomando datos estadisticos de la oferta, total de candidatos, del sector, de los salarios...
