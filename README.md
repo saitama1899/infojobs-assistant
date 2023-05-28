@@ -9,9 +9,9 @@ Este análisis cuenta con 5 partes principales que el candidato podrá diferenci
 4- Porcentaje de compatibilidad de la oferta de trabajo con el curriculum.
 5- Porcentaje de exito de conseguir el puesto de trabajo.
 
-----
 Este es un proyecto de 1 semana para participar en la hackaton de Infojobs y Midudev.
 
+----
 - APP: [https://github.com/saitama1899/infojobs-assistant](https://github.com/saitama1899/infojobs-assistant)
 - API: [https://github.com/saitama1899/ifa-api](https://github.com/saitama1899/ifa-api)
 
