@@ -56,7 +56,7 @@ Devolverá un array de 5 objetos, con las respuestas para cada uno de los 5 punt
 
 ## 📑 Notas del desarrollo
 - Este proyecto esta pensado como MVP, es una versión del código rápida y funcional para poner a prueba la idea.
-- 
+
 ### APP
 - Esta desarrollada en JS vanila, se utiliza Vite para hacer el build de la aplicación.
 - El código debería refactorizarse pronto e intentar pasarlo a algún framework declarativo.
@@ -65,8 +65,10 @@ Devolverá un array de 5 objetos, con las respuestas para cada uno de los 5 punt
 ### API
 - Esta desarrollado en Node con Express.
 
-## TODO técnico
+## TODO técnico (a realizar antes de la fecha limite)
 - Diferenciar usuarios en la extensión de Chrome (almacenar mas de 1 accessToken a la vez y relacionado con un Id de usuario)
+- Que la página se actualice al loguear con OAUTH.
+- Que el analisis no solo se renderice al terminar la petición si el tab esta activo.
 - Solucionar error 429 que sucede de forma puntual por exceso de peticiones.
 - Trabajar en la velocidad de respuesta de chat completion de Open Ai.
 - Mejorar el prompt para obtener un analisis mas efectivo.
