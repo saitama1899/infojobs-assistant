@@ -7,9 +7,13 @@ La finalidad de la extensión es la de facilitar el proceso de selección al can
 Este análisis cuenta con 5 partes principales que el candidato podrá diferenciar fácilmente:
 
 1- Fallos en el curriculum, faltas de ortografia, contenido que se eche en falta... etc.
+
 2- Cambios para adaptarlo mejor a la oferta en cuestión.
+
 3- Previsión del proceso de selección, posibles preguntas y preparación.
+
 4- Porcentaje de compatibilidad de la oferta de trabajo con el curriculum.
+
 5- Porcentaje de exito de conseguir el puesto de trabajo.
 
 Este es un proyecto de 1 semana para participar en la hackaton de Infojobs y Midudev.
