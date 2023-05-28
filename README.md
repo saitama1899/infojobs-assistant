@@ -30,7 +30,7 @@ Este es un proyecto de 1 semana para participar en la hackaton de Infojobs y Mid
 ![3](https://github.com/saitama1899/infojobs-assistant/assets/16955362/eab36a55-0619-4189-8e71-6dec8bcbc5c6)
 
 #### Análisis del perfil completado
-![4](https://github.com/saitama1899/infojobs-assistant/assets/16955362/c0f69643-77ea-4c63-8e95-c28072142f52)
+![4](https://github.com/saitama1899/infojobs-assistant/assets/16955362/1800beec-32c1-4b01-a025-4fa96b72e813)
 
 ## 🛠️ Guía de uso
 - Clonar el repositorio [APP](https://github.com/saitama1899/infojobs-assistant) en local.
