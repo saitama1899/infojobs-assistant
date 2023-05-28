@@ -15,8 +15,18 @@ Este es un proyecto de 1 semana para participar en la hackaton de Infojobs y Mid
 - APP: [https://github.com/saitama1899/infojobs-assistant](https://github.com/saitama1899/infojobs-assistant)
 - API: [https://github.com/saitama1899/ifa-api](https://github.com/saitama1899/ifa-api)
 
-## Demo
+## 🆒 Demo
 
+#### Inicio de sesión
+![1](https://github.com/saitama1899/infojobs-assistant/assets/16955362/43e89ddd-a32e-4af4-8464-2df41f86625e)
+
+#### Previa al analisis
+![2](https://github.com/saitama1899/infojobs-assistant/assets/16955362/c6f8c4da-4626-4728-b0c1-b9777dde9783)
+
+#### Pantalla de carga
+
+#### Análisis del perfil completado
+![4](https://github.com/saitama1899/infojobs-assistant/assets/16955362/c0f69643-77ea-4c63-8e95-c28072142f52)
 
 ## 🛠️ Guía de uso
 - Clonar el repositorio [APP](https://github.com/saitama1899/infojobs-assistant) en local.
@@ -58,7 +68,7 @@ Devolverá un array de 5 objetos, con las respuestas para cada uno de los 5 punt
 - Diferenciar usuarios en la extensión de Chrome (almacenar mas de 1 accessToken a la vez y relacionado con un Id de usuario)
 - Solucionar error 429 que sucede de forma puntual por exceso de peticiones.
 - Trabajar en la velocidad de respuesta de chat completion de Open Ai.
-- Mejorar el prompt para obtener un analisis mas completo.
+- Mejorar el prompt para obtener un analisis mas efectivo.
 
 ## TODO conceptual
 - Añadir a la extension algún cuadro mas de informacion adicional tomando datos estadisticos de la oferta, total de candidatos, del sector, de los salarios...
