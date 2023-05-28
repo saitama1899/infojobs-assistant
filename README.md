@@ -64,6 +64,6 @@ Devolverá un array de 5 objetos, con las respuestas para cada uno de los 5 punt
 - Trabajar en la velocidad de respuesta de chat completion de Open Ai (actualmente es muy larga, de 1 minuto)
 - Mejorar el prompt para obtener un analisis mas efectivo.
 
-## TODO conceptual
+## TODO conceptual (no se va a realizar pero las registo como ideas)
 - Profundizar aún más en el analisis.
 - Añadir a la extension algún cuadro mas de informacion adicional tomando datos estadisticos de la oferta, total de candidatos, del sector, de los salarios...
