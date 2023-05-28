@@ -99,13 +99,14 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
   }
 
   if (request.message === "getAnalytics") {
-    chrome.storage.local.get(['analytics'], function(result) {
-      sendResponse({analytics: result.analytics})
+    chrome.storage.local.get('analytics', function(result) {
+      let analytics = result.analytics || {}
+      sendResponse({analytics: analytics[request.offerId]})
     })
     return true
   }
 
-  if (request.message === "fetchApiData") {
+if (request.message === "fetchApiData") {
     fetch("https://ifa-api-blush.vercel.app/api/infojobs", {
         method: 'POST',
         headers: {
@@ -122,12 +123,20 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
         console.log('Failed to obtain analytics')
         return
       }
-      chrome.storage.local.set({analytics: data.response}, function() {
-        if (chrome.runtime.lastError) {
-          console.error('Error setting analytics:', chrome.runtime.lastError)
-        } else {
-          console.log('Analytics data is stored in local storage', data.response)
-        }
+      chrome.storage.local.get('analytics', function(result) {
+        let analytics = result.analytics || {}
+        analytics[request.offerId] = data.response
+
+        chrome.storage.local.set({analytics}, function() {
+          if (chrome.runtime.lastError) {
+            console.error('Error setting analytics:', chrome.runtime.lastError)
+          } else {
+            console.log('Analytics data is stored in local storage for offerId:', request.offerId, data.response)
+            chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+              chrome.tabs.sendMessage(tabs[0].id, {message: 'apiDataStored', offerId: request.offerId, analytics: data.response});
+            })
+          }
+        })
       })
     })
     .catch((error) => {
