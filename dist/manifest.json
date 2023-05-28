@@ -1,0 +1,35 @@
+{
+  "manifest_version": 3,
+  "name": "Infojobs Assistant",
+  "version": "1.0",
+  "action": {
+    "default_popup": "index.html"
+  },
+  "permissions": [
+    "activeTab",
+    "tabs",
+    "storage",
+    "scripting",
+    "identity",
+    "webNavigation"
+  ],
+  "host_permissions": [
+    "https://www.infojobs.net/*",
+    "https://ifa-api-blush.vercel.app/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.infojobs.net/*"],
+      "js": ["contentScript.js"]
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["logo.png"],
+      "matches": ["https://www.infojobs.net/*"]
+    }
+  ]
+}
