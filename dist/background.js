@@ -34,6 +34,9 @@ function fetchToken(authCode) {
           console.error('Error setting access token:', chrome.runtime.lastError)
         } else {
           console.log('Token is stored in local storage')
+            chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+              chrome.tabs.reload(tabs[0].id)
+          })
         }
     })
   })
