@@ -132,8 +132,10 @@ if (request.message === "fetchApiData") {
             console.error('Error setting analytics:', chrome.runtime.lastError)
           } else {
             console.log('Analytics data is stored in local storage for offerId:', request.offerId, data.response)
-            chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-              chrome.tabs.sendMessage(tabs[0].id, {message: 'apiDataStored', offerId: request.offerId, analytics: data.response});
+            chrome.tabs.query({url: "*://www.infojobs.net/*"}, function(tabs) {
+              tabs.forEach(function(tab) {
+                chrome.tabs.sendMessage(tab.id, {message: 'apiDataStored', offerId: request.offerId, analytics: data.response})
+              })
             })
           }
         })
