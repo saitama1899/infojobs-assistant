@@ -1,5 +1,6 @@
 /* global chrome */
 
+
 const jobOfferRegex = /^https:\/\/www.infojobs.net\/.+\/.+\/of-.+/
 const rightColumn = document.createElement('div')
 const loading = renderLoading()
@@ -14,8 +15,9 @@ if (jobOfferRegex.test(window.location.href)) {
   let offerId = null
   if (match && match[1]) {
     offerId = match[1]
-    console.log('Offer ID:', offerId);
+    console.log('Offer ID:', offerId)
   }
+  renderSalary(scriptContent)
   chrome.runtime.sendMessage({message: "getAccessToken"}, function(response) {
     const ijaAnalytics = document.createElement('section')
     ijaAnalytics.classList.add('container-expanded', 'panel-canvas', 'panel-rounded', 'inner-expanded', 'inner')
@@ -126,6 +128,7 @@ function renderLoading () {
   loading.appendChild(gif)
   return loading
 }
+
 chrome.runtime.onMessage.addListener(function(request) {
   if (request.message === 'apiDataStored') {
     rightColumn.removeChild(loading)
@@ -134,6 +137,71 @@ chrome.runtime.onMessage.addListener(function(request) {
   }
 })
 
+function getSalaryByCategory(category) {
+  // Datos sacados de talent.com
+  const salaries = {
+    "administracion-de-empresas": 29500,
+    "administracion-publica": 25500,
+    "atencion-a-clientes": 17000,
+    "calidad-produccion-e-i-d": 22500,
+    "comercial-y-ventas": 22500,
+    "compras-logistica-y-almacen": 18500,
+    "diseno-y-artes-graficas": 20500,
+    "educacion-y-formacion": 23000,
+    "finanzas-y-banca": 26000,
+    "informatica-y-telecomunicaciones": 26500,
+    "ingenieros-y-tecnicos": 30000,
+    "inmobiliario-y-construccion": 23500,
+    "legal": 23000,
+    "marketing-y-comunicacion": 27000,
+    "profesiones-artes-y-oficios": 18.500,
+    "recursos-humanos": 22000,
+    "sanidad-y-salud": 32000,
+    "sector-farmaceutico": 21500,
+    "turismo-y-restauracion": 19500,
+    "ventas-al-detalle": 22500,
+    "Otros": 18000
+  }
+  return salaries[category]
+}
+
+function renderSalary(scriptContent) {
+  let categoryMatch = scriptContent.match(/utag_data\.es_sch_ad_category_level1='(.*?)'/)
+  let category = null
+  if (categoryMatch && categoryMatch[1]) {
+    category = categoryMatch[1]
+    const salaryNumber = getSalaryByCategory(category)
+    let salaryContainer = document.createElement('div')
+    salaryContainer.classList.add('col-4', 'col-12-medium', 'no-print')
+    salaryContainer.style.marginBottom = '10px'
+    salaryContainer.style.textAlign = 'center'
+    let salary = document.createElement('div')
+    salary.classList.add('col-child', 'inner-s', 'inner-expanded', 'panel-canvas', 'panel-rounded')
+    let salaryTitle = document.createElement('h3')
+    salaryTitle.style.marginBottom = '5px'
+    salaryTitle.textContent = category.replace(/-/g, ' ')
+    salaryTitle.style.textTransform = 'capitalize'
+    salary.appendChild(salaryTitle)
+    let salarySubtitle = document.createElement('p')
+    salarySubtitle.style.fontSize = '12px'
+    salarySubtitle.style.fontStyle = 'italic'
+    salarySubtitle.style.fontWeight = 'normal'
+    salarySubtitle.textContent = '(Salario medio neto anual)'
+    salary.appendChild(salarySubtitle)
+    let salaryValue = document.createElement('p')
+    salaryValue.style.color = salaryNumber <= 18500 ? '#ff6340' : salaryNumber <= 21000 ? '#2088C2' : '#57c433';
+    salaryValue.style.fontWeight = 'bold'
+    salaryValue.style.fontSize = '35px'
+    let formattedSalary = salaryNumber.toString().split('');
+    formattedSalary.splice(2, 0, '.');
+    salaryValue.textContent = formattedSalary.join('') + '€'
+    salary.appendChild(salaryValue)
+    salaryContainer.appendChild(salary)
+    let existingElement = document.querySelector('.col-4.col-12-medium.no-print')
+    let parentElement = existingElement.parentNode
+    parentElement.insertBefore(salaryContainer, existingElement)
+  }
+}
 
 
 
