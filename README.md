@@ -54,11 +54,10 @@ Devolverá un array de 5 objetos, con las respuestas para cada uno de los 5 punt
 - Es mi primera extensión de Chrome!
 
 ### API
-- Esta desarrollado en Node con Express.
+- Esta desarrollado en Node con Express. Alojado en Vercel.
 
-## TODO técnico (a realizar antes de la fecha limite)
+## TODO técnico
 - Diferenciar usuarios en la extensión de Chrome (almacenar mas de 1 accessToken a la vez y relacionado con un Id de usuario)
-- Que la página se actualice al loguear con OAUTH.
 - Solucionar error 429 que sucede de forma puntual por exceso de peticiones.
 - Trabajar en la velocidad de respuesta de chat completion de Open Ai (actualmente es muy larga, de 1 minuto)
 - Mejorar el prompt para obtener un analisis mas efectivo.
