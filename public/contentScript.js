@@ -3,6 +3,7 @@
 const jobOfferRegex = /^https:\/\/www.infojobs.net\/.+\/.+\/of-.+/
 const rightColumn = document.createElement('div')
 const loading = renderLoading()
+const subtitle = document.createElement('p')
 
 if (jobOfferRegex.test(window.location.href)) {
   document.getElementById('howyoumatchcard').style.display = 'none'
@@ -47,7 +48,6 @@ if (jobOfferRegex.test(window.location.href)) {
           content.appendChild(title)
         } else {   
           if (offerId) {
-              const subtitle = document.createElement('p')
               subtitle.textContent = 'Averigua cómo puedes enfocar tu currículum para destacar entre los demás candidatos, qué puedes esperar de este proceso de seleccion, tu nivel de compatibilidad y porcentaje de éxito.'
               rightColumn.appendChild(subtitle)
     
@@ -129,6 +129,7 @@ function renderLoading () {
 chrome.runtime.onMessage.addListener(function(request) {
   if (request.message === 'apiDataStored') {
     rightColumn.removeChild(loading)
+    rightColumn.removeChild(subtitle)
     rightColumn.appendChild(renderAnalytics(request.analytics))
   }
 })
