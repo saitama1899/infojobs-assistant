@@ -32,6 +32,10 @@ Este es un proyecto de 1 semana para participar en la hackaton de Infojobs y Mid
 #### Análisis del perfil completado
 ![4](https://github.com/saitama1899/infojobs-assistant/assets/16955362/1800beec-32c1-4b01-a025-4fa96b72e813)
 
+#### Vista de salario medio
+![5](https://github.com/saitama1899/infojobs-assistant/assets/16955362/bc5737d0-3ef3-4409-a51b-f5cb90517799)
+
+
 ## 🛠️ Guía de uso
 - Clonar el repositorio [APP](https://github.com/saitama1899/infojobs-assistant) en local.
 - En tu navegador Chrome, ir a Extensions > Manage extensions y activar el Developer Mode.
